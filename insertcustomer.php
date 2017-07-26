@@ -39,8 +39,8 @@ $telephone = $_POST['telephone'];
 $rName = $_POST['receiverName'];
 $rPss = $_POST['receiverPassword'];
 
-$sql = "INSERT INTO customer (username, password, email, address, tel, Receiver_Name, Receiver_password)
-VALUES ('$uname', '$pss', '$email', '$address', '$telephone', '$rName', '$rPss')";
+$sql = "INSERT INTO customer (username, password, email, address, tel)
+VALUES ('$uname', '$pss', '$email', '$address', '$telephone')";
 
 if (mysqli_query($con, $sql)) {
     echo "New record created successfully";

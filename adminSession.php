@@ -1,8 +1,9 @@
 <?php
+require 'connect.php';
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysql_connect("localhost", "root", "");
+$connection = mysql_connect("localhost", $mysql_username, $mysql_password);
 // Selecting Database
-$db = mysql_select_db("rapiddeliverynew", $connection);
+$db = mysql_select_db($db_name, $connection);
 session_start();// Starting Session
 // Storing Session
 $user_check=$_SESSION['login_user'];

@@ -72,12 +72,11 @@
                     </li>
                 </ul>
                 <ul>
-                <div class="userName">
-                
-					<?php
-                    include('courierSession.php');
-                    echo "<h3> $login_session </h3>";
-                    ?>
+                <div class="userName">               
+<?php
+include("couriercheck.php");   
+echo "<h3> $login_user </h3>";
+?>
 
                     
                     <form action="logout.php" method="post">
@@ -156,13 +155,13 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
                 <div class="col-lg-12">
                     <h1>View Your jobs</h1>
                     
-                    <?php
-					require 'connect.php';
-					//include('courierSession.php');
-					$sql = "SELECT id FROM courier WHERE username = '$login_session'";
+<?php
+/*require 'connect.php';
+//include('courierSession.php');
+$sql = "SELECT id FROM courier WHERE username = '$login_session'";
 					
-					if (mysqli_query($con, $sql)) {
-						if (mysqli_query($con, $sql)) {
+if (mysqli_query($con, $sql)) {
+if (mysqli_query($con, $sql)) {
     
 $results = mysqli_query($con, $sql) or die(mysql_error());
 
@@ -217,8 +216,8 @@ echo  "<table id=\"keywords\" cellspacing=\"0\" cellpadding=\"0\">
 }
 }
 }
-	}  
-					?>
+	}  */
+?>
                 </div>
             </div>
         </div>

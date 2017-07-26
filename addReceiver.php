@@ -1,3 +1,6 @@
+<?php
+include("customercheck.php");  
+?>
 <!DOCTYPE HTML>
 <!DOCTYPE html>
 <html>
@@ -51,17 +54,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="customerHome.php">Rapid Delivery</a>
+                <a class="navbar-brand page-scroll" href="customerHome.php" style="color:#fff">Rapid Delivery</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul>
                 <div class="userName">    
-          			<?php
-                    include('customerSession.php');
-                    echo "<h3> $login_session </h3>";
-                    ?>
+<?php 
+echo "<h3 style=\"color:#fff\"> $login_user </h3>";
+?>
                     
                     <form action="logout.php" method="post">
                     <div class="logout">
@@ -79,7 +81,7 @@
 </div>
 <div class="grad"></div>
 		<div class="header">
-			<div>Register a <br>
+			<div>Register a <br/><br/>
             <span>Receiver</span></div>
 		</div>
 		<br>

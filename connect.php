@@ -1,15 +1,7 @@
-<?php //This will establish the connection with the database.
-$db_name = "RapidDeliverynew";
-$mysql_username = "root";
-$mysql_password = "";
-$server_name = "localhost";
-$con = mysqli_connect($server_name, $mysql_username, $mysql_password, $db_name);
-
-if($con){
-//echo "DB connection success!";
-}
-
-else
-echo "Connection failed!";
-
+<?php
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'rapiddeliverynew');
+$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 ?>

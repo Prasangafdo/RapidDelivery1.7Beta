@@ -1,9 +1,12 @@
 <?php
-include('loginCourier.php'); // Includes Login Script
+  include('loginCourier.php'); // Include Login Script
 
-if(isset($_SESSION['login_user'])){
-header("location: Courierhome.php");
-}
+  if ((isset($_SESSION['username']) != '')) 
+  {
+    header('Location: Courierhome.php');
+  } 
+  
+
 ?>
 <!DOCTYPE html>
 <html >

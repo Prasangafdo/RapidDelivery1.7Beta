@@ -1,3 +1,6 @@
+<?php
+include("customercheck.php");  
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,10 +80,9 @@
                 <ul>
                 <div class="userName">
                 
-					<?php
-                    include('customerSession.php');
-                    echo "<h3> $login_session </h3>";
-                    ?>
+<?php  
+echo "<h3> $login_user </h3>";
+?>
 
                     
                     <form action="logout.php" method="post">

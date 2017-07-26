@@ -17,11 +17,11 @@ html {
 
 @media(min-width:767px) {
     .navbar {
-        padding: 20px 0;
+        padding: 2px 0;
         -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background .5s ease-in-out,padding .5s ease-in-out;
-		background:rgba(210,191,125,0.23);
+		background:rgba(52,191,125,0.23);
 		
     }
 
@@ -99,16 +99,25 @@ html {
 .logout input[type=submit]{
 	width: 70px;
 	height: 35px;
-	background: #fff;
+	background: #006659;
 	border: 1px solid #a18d6c;
 	cursor: pointer;
 	border-radius: 2px;
-	color: #a18d6c;
+	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
 	font-weight: 400;
 	padding: 6px;
 	margin-top: 10px;
+}
+input[type=text]{
+	background: rgba(173,213,159,0.35);
+	border: 1px solid #a18d6c;
+	color: #000;
+	font-family: 'Exo', sans-serif;
+}
+input::placeholder {
+  color: #000;
 }
 
 .logout input[type=submit]:hover{

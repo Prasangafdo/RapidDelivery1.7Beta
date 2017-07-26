@@ -19,12 +19,10 @@
            <form action="insertCustomer.php" method="post">
 <br/>
         		<input id="username" name="uname" placeholder="username" type="text">
-				<input id="passss" name="pss" placeholder="**********" type="password"><br/>
-                <input id="email" name="email" placeholder="email" type="text"><br/>
-				<input id="address" name="address" placeholder="address" type="text"><br/>
+				<input id="passss" name="pss" placeholder="**********" type="password"><br/><br/>
+                <input id="email" name="email" placeholder="email" type="text"><br/><br/>
+				<input id="address" name="address" placeholder="address" type="text"><br/><br/>
                 <input id="telephone" name="telephone" placeholder="telephone" type="text"><br/>
-                <input id="receiverName" name="receiverName" placeholder="Receiver's Username" type="text"><br/>
-                <input id="receiverPassword" name="receiverPassword" placeholder="Receiver's Password" type="password"><br/>
 				<input name="submit" type="submit" value="Register">
                                
 				</form>      
