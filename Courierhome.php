@@ -1,3 +1,6 @@
+<?php
+include("couriercheck.php");   
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,13 +71,12 @@
                         <a class="page-scroll" href="#Switch-Vehicle">Switch Vehicle</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#View-completed-jobs">View completed jobs</a>
+                        <a class="page-scroll" href="#View-completed-jobs">View jobs</a>
                     </li>
                 </ul>
                 <ul>
                 <div class="userName">               
-<?php
-include("couriercheck.php");   
+<?php 
 echo "<h3> $login_user </h3>";
 ?>
 
@@ -140,7 +142,7 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
                       
                          <form  method="post" action="shiftVehicle.php" >
  						 <input type="text" name="vehicleID" id="vehicleID" placeholder="Vehicle ID">
-                        <input type="submit" Value="Shift Package" id="" class="submitBtn"><!--Need to remove onclocks-->
+                        <input type="submit" Value="Shift Package" id="" class="submitBtn">
                         </form>
                         </p>
                 </div>
@@ -151,76 +153,60 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
 
     <section id="View-completed-jobs" class="completedJobs-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>View Your jobs</h1>
+            <div class="row"> 
+            <div class="col-lg-12">
+                    <h1>Your Jobs</h1>
                     
+                    <table class="container">
+	<thead>
+		<tr>
+			<th><h1>Customer ID</h1></th>
+			<th><h1>Parcel ID</h1></th>
+			<th><h1>Status</h1></th>
+			<th><h1>Vehicle ID</h1></th>
+		</tr>
+	</thead>
+	<tbody>
 <?php
-/*require 'connect.php';
-//include('courierSession.php');
-$sql = "SELECT id FROM courier WHERE username = '$login_session'";
-					
-if (mysqli_query($con, $sql)) {
-if (mysqli_query($con, $sql)) {
+$sql = "SELECT id from courier where username = '$login_user'";
+
     
-$results = mysqli_query($con, $sql) or die(mysql_error());
-
-$x=1;
-
+$results = mysqli_query($db, $sql) or die(mysql_error());
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
 extract($row);
-$id;
 
-$sql = "SELECT * FROM
-parcel_status where courier_id = '$id'";
-//0 is for no parcels
-if (mysqli_query($con, $sql)) {
-    
-$results = mysqli_query($con, $sql) or die(mysql_error());
-
-while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-{
-
-extract($row);
-echo  "<table id=\"keywords\" cellspacing=\"0\" cellpadding=\"0\">
-<thead>
-<br/><br/>
-
-<tr>
-<th><span>ID</span></th>
-        <th><span>Courier ID</span></th>
-        <th><span>Customer ID</span></th>
-        <th><span>Status</span></th>
-        <th><span>Vehicle ID</span></th>
-        <th><span>Parcel ID</span></th>
-      </tr>
-    </thead>
-
-
-	 <tbody>
-      <tr>
-        <td class=\"lalign\">".$id."</td>
-	 
-        <td>".$courier_id."</td>
-        <td>".$customer_id."</td>
-        <td>".$status."</td>
-        <td>".$Vehicle_ID."</td>
-		<td>".$parcel_ID."</td>
-      </tr>
-	   </tr>
-    </tbody>
-  </table>";
-		}
-	}
+//echo $id;//Getting  the customer_ID	
 }
+
+$sql = "SELECT * FROM parcel_status where courier_id = $id";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	
+	  echo	"
+		<tr>
+			<td> $customer_id  </td>
+			<td>$parcel_ID</td>
+			<td>$status</td>
+			<td>$Vehicle_ID</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
 }
-}
-	}  */
+
+echo "";
+$db->close();
 ?>
-                </div>
+</tbody>
+</table>
             </div>
         </div>
+        
     </section>
     
 

@@ -1,6 +1,6 @@
 <?php
-include('connect.php');
 session_start();
+include('connect.php');
 $user_check=$_SESSION['username'];
 
 $ses_sql = mysqli_query($db,"SELECT username FROM courier WHERE username='$user_check' ");
