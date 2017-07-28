@@ -48,12 +48,7 @@ include("couriercheck.php");
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                
                 <a class="navbar-brand page-scroll" href="#page-top">Rapid Delivery</a>
             </div>
 
@@ -65,13 +60,13 @@ include("couriercheck.php");
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#Find-couriers">Find couriers</a>
+                        <a class="page-scroll" href="#Find-couriers">Find Parcels</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#Switch-Vehicle">Switch Vehicle</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#View-completed-jobs">View jobs</a>
+                        <a class="page-scroll" href="#View-completed-jobs">View Jobs</a>
                     </li>
                 </ul>
                 <ul>
@@ -117,12 +112,12 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Find couriers</h1>
+                    <h1>Find Parcels</h1>
                     	<p align="justify"> 
                       
                          <form  method="post" action="courierparcels.php" >
- 						 <input type="text" name="pickupaddress" id="pickupaddress" placeholder="Pickup location">
-                         <input type="text" name="stateaddress" id="stateaddress" placeholder="Delivery location">
+ 						 <input type="text" name="pickupaddress" id="pickupaddress" placeholder="Pickup state">
+                         <input type="text" name="stateaddress" id="stateaddress" placeholder="Delivery state">
                         <input type="submit" Value="Search" id="" class="submitBtn">
                         </form>
                         </p>
@@ -157,7 +152,7 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
             <div class="col-lg-12">
                     <h1>Your Jobs</h1>
                     
-                    <table class="container">
+  <table class="container">
 	<thead>
 		<tr>
 			<th><h1>Customer ID</h1></th>

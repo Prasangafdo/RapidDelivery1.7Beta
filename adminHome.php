@@ -1,3 +1,6 @@
+<?php
+include("admincheck.php");   
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,26 +65,24 @@
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#Couriers">Couriers</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#Customers">Customers</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#Receivers">Receivers</a>
                     </li>
                     <li>
-                    	<a class="page-scroll" href="#track">Tracking</a>
+                    	<a class="page-scroll" href="#Parcels">Parcels</a>
                     </li>
                 </ul>
                 <ul>
                 <div class="userName">
                 
-					<?php 
-                    include('adminSession.php');
-                    echo "<h3> $login_session </h3>";
-					
-                    ?>
+<?php 
+echo "<h3> $login_user </h3>";
+?>
 
                     
                     <form action="logout.php" method="post">
@@ -90,81 +91,216 @@
 				</form>
             </div>
             </ul>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     <!-- Intro Section -->
-    <section id="intro" class="intro-section">
+    <section id="Couriers" class="intro-section">
         <div class="container">
             <div class="row">
                 <div class="welcomePane">
                     <h1>Welcome to Rapid Delivery</h1>
                     <div class="welcomePane-img">
+                    <img class="img-responsive" src="images/Courier-hands-960x360.jpg">
                     	<p>&nbsp;</p>
                    <!-- <a class="btn btn-default page-scroll" href="#about">Click Me to Scroll Down!</a> -->
                 </div>
                 
             </div>
         </div>
-        <form action="addParcel.php">
-         <input type="submit" name="submit" id="submit" value="Place a courier" >
-         </form>
-         
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
+    <section id="Customers" class="about-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>About Rapid Delivery</h1>
-                    	<p align="justify"> Rapid Delivery is a 24/7 courier service, located in Colombo, Sri Lanka. Our company was founded in mid-2017 by a final year software engineering student of the University of the west of England with the aim of providing a better courier service that is focused on delivery transparency with the support of GPS. 
-Packages are collected from any Sri Lankan address and taken to any final destination requested by the client. Although “Rapid Delivery” originally only delivers parcels to Sri Lankan addresses, they now deliver parcels to any global location requested by incorporated clients.  
-Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intelligence and fleet management system to allocate a booking to the most appropriate vehicle for transport mode (including bicycles, motorbikes and vans of varying sizes). 
-Our couriers are rewarded and motivated with high pay for the service levels they provide, supported by the information technology. Thus, Rapid Delivery customers can render a courier service that is reliable, trustworthy and transparent than other traditional courier services all around the island. This industrial and organization philosophy is complex to initiate and also requiring explicit training to be given to the couriers to change the way in which they worked in their lives in the purpose of courier service and behaved in order to fit the new organizational practices and image, enabled by new information technology.  
-Additionally, other than giving features to the employees, Rapid Delivery has been provided a new feature to the customers for the real time tracking of their parcel on a map, in the power of GPS technology. They are also shown the shortest route from the starting point to the final destination, for which they are billed, from pick-up to dispatch. So the customer can keep monitoring their parcel on the map till the package been delivered. That will be a relief for the customers to identify the package has reached to the final destination successfully. It is this high level of human-to-system connectivity at the heart of Rapid Delivery, makes it a unique e-courier service with fulfilling the customer satisfaction.
-</p>
+                    <h1>All Couriers</h1>
+                    
+                      <table class="container">
+	<thead>
+		<tr>
+			<th><h1>Courier ID</h1></th>
+			<th><h1>Username</h1></th>
+			<th><h1>Address</h1></th>
+            <th><h1>Telephone</h1></th>
+			<th><h1>Vehicle ID</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+
+$sql = "SELECT * from courier";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	//Password is not extracting due to security issues.
+	  echo	"
+		<tr>
+			<td>$id</td>
+			<td>$username</td>
+			<td>$address</td>
+			<td>$telephone</td>
+			<td>$vehicle_ID</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
+}
+
+echo "";
+?>
+</tbody>
+</table>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
+    <section id="Receivers" class="services-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Services Section</h1>
+                    <h1>All Customers (Senders)</h1>
+                     
+                      <table class="container">
+	<thead>
+		<tr>
+			<th><h1>Customer ID</h1></th>
+			<th><h1>Username</h1></th>
+			<th><h1>Email Address</h1></th>
+            <th><h1>Address</h1></th>
+			<th><h1>Telephone</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+
+$sql = "SELECT * from customer";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	//Password is not extracting due to security issues.
+	  echo	"
+		<tr>
+			<td>$id</td>
+			<td>$username</td>
+			<td>$email</td>
+			<td>$address</td>
+			<td>$tel</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
+}
+
+echo "";
+?>
+</tbody>
+</table>
+        
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section id="Parcels" class="contact-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Contact Section</h1>
+                    <h1>All Receivers</h1>
+                      <table class="container">
+	<thead>
+		<tr>
+			<th><h1>Receiver ID</h1></th>
+			<th><h1>Username</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+
+$sql = "SELECT * from receiver";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	//Password is not extracting due to security issues.
+	  echo	"
+		<tr>
+			<td>$id</td>
+			<td>$username</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
+}
+
+echo "";
+?>
+</tbody>
+</table>
+        
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Tracking Section -->
+
     <section id="track" class="track-section">
         <div class="container">
             <div class="row">
                 <div class="">
-                    <h1>Tracking</h1>
-                     </div>
-             </div>
-             <form action="CustomerParcels.php" method="post">
-             <input type="text" name="name" placeholder="Customer ID">
-             <input type="submit">
-             </form>
+                    <h1>All Parcels</h1>
+                      <table class="container">
+	<thead>
+		<tr>
+			<th><h1>Parcel ID</h1></th>
+			<th><h1>Customer ID</h1></th>
+			<th><h1>Pickup Address</h1></th>
+            <th><h1>Delivery Address</h1></th>
+			<th><h1>Package Type</h1></th>
+            <th><h1>Contact number</h1></th> <!-- Need to add state address for pickup location and delivery location.-->
+		</tr>
+	</thead>
+	<tbody>
+<?php
+
+$sql = "SELECT * from parcel";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	//Password is not extracting due to security issues.
+	  echo	"
+		<tr>
+			<td>$id</td>
+			<td>$customer_ID</td>
+			<td>$pickup_address</td>
+			<td>$delivery_address</td>
+			<td>$package_type</td>
+			<td>$contact_no</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
+}
+
+echo "";
+//$db->close();
+?>
+</tbody>
+</table>
+</div>
+</div>
+
              
         <!--       
        <div class="map-Border">

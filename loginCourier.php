@@ -1,6 +1,6 @@
 <?php
-	session_start();
-	include("connect.php"); //Establishing connection with our database
+session_start();
+include("connect.php"); //Establishing connection with our database
 	
 	$error = ""; //Variable for storing our errors.
 	if(isset($_POST["submit"]))

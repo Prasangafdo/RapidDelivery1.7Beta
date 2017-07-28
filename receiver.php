@@ -1,8 +1,8 @@
 <?php
-include('loginCourier.php'); // Includes Login Script
+include('loginReceiver.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
-header("location: receiverhome.php");
+header("location: ReceiverHome.php");
 }
 ?>
 <!DOCTYPE html>

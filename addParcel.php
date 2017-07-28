@@ -1,4 +1,6 @@
-<!DOCTYPE HTML>
+<?php
+include("customercheck.php");  
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,10 +60,9 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul>
                 <div class="userName">    
-          			<?php
-                    include('customerSession.php');
-                    echo "<h3> $login_session </h3>";
-                    ?>
+<?php
+echo "<h3> $login_user</h3>";
+ ?>
                     
                     <form action="logout.php" method="post">
                     <div class="logout">
@@ -79,7 +80,7 @@
 </div>
 <div class="grad"></div>
 		<div class="header">
-			<div>Register a <br>
+			<div>Register a <br/><br/>
             <span>Parcel</span></div>
 		</div>
 		<br>

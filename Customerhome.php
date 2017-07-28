@@ -71,7 +71,7 @@ include("customercheck.php");
                         <a class="page-scroll" href="#services">Services</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">Receiver Details</a>
                     </li>
                     <li>
                     	<a class="page-scroll" href="#track">Tracking</a>
@@ -111,15 +111,16 @@ echo "<h3> $login_user </h3>";
   <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/style4.css">
      <form action="addParcel.php" style=" display: inline-block">
-    <button data-hover="Go to page"><div>Place a courier</div></button>
+    <button data-hover="Go to page"><div>Add a parcel</div></button>
     </form>
      <form action="addReceiver.php" style=" display: inline-block">
-    <button data-hover="Go to page"><div>Add a receiver</div></button>
-    </form>
-     
-         
-    </section>
-
+       <button data-hover="Go to page"><div>Add a receiver</div></button>
+     </form>
+       
+    <br/>
+    <br/>
+   </section>
+    
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
@@ -159,48 +160,56 @@ Additionally, other than giving features to the employees, Rapid Delivery has be
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Receiver Details</h1>
-                       <?php
-require 'connect.php';
+                    
+   <table class="container">
+	<thead>
+		<tr>
+			<th><h1>ID</h1></th>
+			<th><h1>Username</h1></th>
+			<th><h1>Password</h1></th>
+		</tr>
+	</thead>
+  <tbody>
+<?php
 
-$sql = "SELECT * FROM
-receiver where pickup_address like '$pickup_addr' AND state_address like '$state_address'";
+$sql = "SELECT id from customer where username = '$login_user'";
 
-if (mysqli_query($con, $sql)) {
     
-$results = mysqli_query($con, $sql) or die(mysql_error());
-$x=1;
+$results = mysqli_query($db, $sql) or die(mysql_error());
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-if ($x <= 1)
-{
 
 extract($row);
-echo "<table id=\"keywords\" cellspacing=\"0\" cellpadding=\"0\">";
-echo "<thead>
-<br/><br/>
-<br/>
-
-<tr>
-<th><span>ID</span></th>
-        <th><span>pickup_address</span></th>
-        <th><span>delivery_address</span></th>
-        </tr>
-    </thead>
-	 <tbody>
-      <tr>
-        <td class=\"lalign\">".$id ."</td>
-	 
-        <td>".$pickup_address."</td>
-        <td>".$delivery_address."</td>
-        
-      </tr>
-	   </tr>
-    </tbody>
-  </table>";
-		}
-	}
+//echo $id;//Getting  the customer_ID	
 }
+
+$sql = "SELECT * FROM
+receiver where customer_ID = $id";
+
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	
+	  echo	"
+		<tr>
+			<td> $id</td>
+			<td>$username</td>
+			<td>$password</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
+}
+
+echo "";
+//$db->close();
+
 ?>
-                    ///////////////
+</tbody>
+</table>
+</div>
                 </div>
             </div>
         </div>
@@ -216,19 +225,35 @@ echo "<thead>
              </div>
              <form action="CustomerParcels.php" method="post">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
-             <input type="submit">
+             <input type="submit" value="Track">
              </form>
              <form action="DeleteParcels.php" method="post">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
              <input type="submit" value="Received">
-             </form>     
+             </form>  
+             </div>
+             </section>  
+             <br/> 
+             
+                <table class="container">
+	<thead>
+		<tr>
+			<th><h1>ID</h1></th>
+			<th><h1>Pickup address</h1></th>
+			<th><h1>Delivery Address</h1></th>
+			<th><h1>package Type</h1></th>
+			<th><h1>contact Number</h1></th>
+			<th><h1>Status</h1></th>
+		</tr>
+	</thead>
+  <tbody>
+  
 <?php
-	
-require 'connect.php';
-$sql = "SELECT id from customer where username = '$login_session'";
-if (mysqli_query($con, $sql)) {
+
+$sql = "SELECT id from customer where username = '$login_user'";
+if (mysqli_query($db, $sql)) {
     
-$results = mysqli_query($con, $sql) or die(mysql_error());
+$results = mysqli_query($db, $sql) or die(mysql_error());
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
 extract($row);
@@ -238,50 +263,40 @@ $id;//Getting  the customer_ID
 }
 
 $sql1 = "SELECT status from parcel_status where customer_id = '$id'";
-if (mysqli_query($con, $sql1)) {
+if (mysqli_query($db, $sql1)) {
     
-$results = mysqli_query($con, $sql1) or die(mysql_error());
+$results = mysqli_query($db, $sql1) or die(mysql_error());
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
 extract($row);
-$status;//Getting  parcel status
+//echo $status;//Getting  parcel status
 	}
 }
 
-$sql = "SELECT parcel.parcel_ID, parcel.pickup_address, parcel.delivery_address,parcel.package_type, parcel.contact_no, parcel_status.status FROM parcel INNER JOIN parcel_status on parcel.parcel_ID = parcel_status.parcel_ID WHERE parcel_status.status = 'Pickedup' AND parcel_reports.customer_id = '1'";
+$sql = "SELECT parcel.ID, parcel.pickup_address, parcel.delivery_address, parcel.package_type, parcel.contact_no, parcel_status.status FROM parcel INNER JOIN parcel_status on parcel.id = parcel_status.parcel_ID WHERE parcel_status.status = 'Pickedup' AND parcel_status.customer_id = '1'";
 
-if (mysqli_query($con, $sql)) {
-    
-$results = mysqli_query($con, $sql) or die(mysql_error());
-echo "<table border=\"2\">";
-$x=1;
-echo "<tr>";
-while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-if ($x <= 1)
-{
-$x = $x + 1;
-extract($row);
-echo "<td style=\"padding-right:35px;\">";
-echo $parcel_ID .'<br/>';
-echo "<td style=\"padding-right:15px;\">";
-echo $pickup_address .'<br/>';
-echo "</td>";
-echo "<td style=\"padding-right:15px;\">";
-echo $delivery_address .'<br/>';
-echo "</td>";
-echo "<td style=\"padding-right:15px;\">";
-echo $package_type .'<br/>';
-echo "<td style=\"padding-right:15px;\">";
-echo $contact_no .'<br/>';
-echo "</td>";
-}
-$x=0;
-echo "</tr><tr>";
+$result = $db->query($sql);
 
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	
+	  echo	"
+		<tr>
+			<td>$ID</td>
+			<td>$pickup_address</td>
+			<td>$delivery_address</td>
+			<td>$package_type</td>
+			<td>$contact_no</td>
+			<td>$status</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
 }
-echo "</table>";
 
-}
+echo "";
 
 
 
