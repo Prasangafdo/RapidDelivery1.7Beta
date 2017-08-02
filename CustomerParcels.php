@@ -1,4 +1,18 @@
+<?php
+include("customercheck.php");  
+?>
+
+<!DOCTYPE html>
 <html>
+    <link href="css/style2.css" rel="stylesheet">
+    <link href="css/style3.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
+     <link href="css/scrolling-nav.css" rel="stylesheet">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
 <title>Track the package</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
@@ -11,55 +25,87 @@
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
-        margin: 0;
-        padding: 0;
+        padding-top:4%;
       }
     </style>
-    <link href="css/scrolling-nav.css" rel="stylesheet">
-<body>
+    
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="Customerhome.php">Rapid Delivery</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                </ul>
+                <ul>
+                <div class="userName">
+                
+<?php
+echo "<h3> $login_user </h3>";
+?>
+					<form action="logout.php" method="post">
+                    <div class="logout">
+                    <input name="btn_logout" type="submit" value="Logout">
+				</form>
+                </div>
+                </div>
+                </div>
+                </div>
+                </nav>
 
 <?php
-require 'connect.php';
 $parcel_ID = $_POST['parcel_ID'];
 
 $sql1 = "SELECT status FROM
 parcel_status where parcel_ID = '$parcel_ID'";//Check whether the parcel is delivered.
 
-if (mysqli_query($con, $sql1)) {
+if (mysqli_query($db, $sql1)) {
     
-$results = mysqli_query($con, $sql1) or die(mysql_error());
+$results = mysqli_query($db, $sql1) or die(mysql_error());
 $x=1;
 
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
 extract($row);
-echo $status;
+//echo $status;
 
-if($status == "Pickedup"){
+if($status == "Pickedup"){//Need to add !picked up condition
 
 $sql2 = "SELECT Vehicle_ID FROM
 parcel_status where parcel_ID = '$parcel_ID'";
 
-if (mysqli_query($con, $sql2)) {
+if (mysqli_query($db, $sql2)) {
     
-$results = mysqli_query($con, $sql2) or die(mysql_error());
+$results = mysqli_query($db, $sql2) or die(mysql_error());
 $x=1;
 
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
 extract($row);
 
-echo $Vehicle_ID ;
+//echo $Vehicle_ID ;
 
-//////////
-/////////
 
 $sql = "SELECT Longitude, Latitude FROM
 location where vehicle_ID = '$Vehicle_ID'";
 
-if (mysqli_query($con, $sql)) {
+if (mysqli_query($db, $sql)) {
     
-$results = mysqli_query($con, $sql) or die(mysql_error());
+$results = mysqli_query($db, $sql) or die(mysql_error());
 $x=1;
 
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
@@ -68,9 +114,9 @@ if ($x <= 1)
 $x = $x + 1;
 extract($row);
 
-echo $Longitude .'<br/>';
+//echo $Longitude .'<br/>';
 
-echo $Latitude ;
+//echo $Latitude ;
         }
 $x=0;
     }
@@ -106,7 +152,7 @@ $x=0;
   var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: 'Hello World!'
+    title: 'Your parcel'
   });
 }
     </script>
@@ -114,10 +160,7 @@ $x=0;
     async defer></script>
        </div>
     </section>
-   <!-- <?php 
-     echo "Hello World";
-     ?>
-     -->    
+   
 
 </body>
 </html>

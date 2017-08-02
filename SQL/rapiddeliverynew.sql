@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2017 at 09:49 PM
+-- Generation Time: Jul 29, 2017 at 01:21 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `surname` text NOT NULL,
-  `age` text NOT NULL,
-  `username` text NOT NULL,
-  `password` text NOT NULL
+  `name` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
+  `age` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `surname`, `age`, `username`, `password`) VALUES
-(1, 'Prasanga', 'Fernando', '21', 'usr', 'pss');
+(1, 'Prasanga', 'Fernando', 21, 'Prasanga_Admin', '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
 
@@ -62,8 +62,8 @@ CREATE TABLE `courier` (
 --
 
 INSERT INTO `courier` (`id`, `username`, `password`, `address`, `telephone`, `vehicle_ID`) VALUES
-(3, 'PrasangaCour', 'pss', 'Katunayake', 776655423, 1),
-(4, 'Prasanga_cur', 'courier', '56 Temple Road Negombo', 776655422, 4);
+(4, 'Prasanga_Courier', '827ccb0eea8a706c4c34a16891f84e7b', '15 Kirulapone', 776654352, 143),
+(45, 'Prasanga_cur', 'courier', '56 Temple Road Negombo', 776655422, 4);
 
 -- --------------------------------------------------------
 
@@ -87,9 +87,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `username`, `password`, `email`, `address`, `tel`, `Receiver_Name`, `Receiver_password`) VALUES
-(1, 'Prasanga_cus', 'customer', 'prasangafdz@gmail.com', '102 Andiambalama', '0766492254', '', ''),
-(2, 'customer', 'customer', 'efrs', 'eresr', '24', 'Receiver', '1111'),
-(3, 'c', '1111', '11', '11', '11', 'rec', 'aaaa');
+(1, 'Prasanga_cust', 'customer', 'prasangafdz@gmail.com', '102 Andiambalama', '0766492254', '', ''),
+(15, 'Prasanga_Cus', '827ccb0eea8a706c4c34a16891f84e7b', 'prasangafdz@outlook.com', 'ad', '3424', 'rec', '1111');
 
 -- --------------------------------------------------------
 
@@ -119,6 +118,39 @@ INSERT INTO `location` (`vehicle_ID`, `Longitude`, `Latitude`, `parcel_status`) 
 
 CREATE TABLE `parcel` (
   `id` int(11) NOT NULL,
+  `customer_ID` int(11) NOT NULL,
+  `pickup_address` varchar(50) NOT NULL,
+  `delivery_address` varchar(60) NOT NULL,
+  `package_type` varchar(20) NOT NULL,
+  `contact_no` int(11) NOT NULL,
+  `state_address` varchar(60) NOT NULL,
+  `note` varchar(90) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `parcel`
+--
+
+INSERT INTO `parcel` (`id`, `customer_ID`, `pickup_address`, `delivery_address`, `package_type`, `contact_no`, `state_address`, `note`) VALUES
+(1, 1, 'Katunayake', 'Negombo', 'Parcel', 1122541126, 'Colombo', 'Nothing special'),
+(2, 1, 'Pickup', 'Delivery', 'Beverage', 73532121, 'State', 'Nothing Special'),
+(3, 1, 'pp', 'dd', 'ty', 34342, 'ffdsfsf', 'ggfcnfgnjfgn'),
+(4, 1, 'pp', 'dsfds', 'sdfds', 6756, 'fsfs', 'sfsdg'),
+(6, 12, 'aa', 'sd', 'ty', 121321, 'colombo', ''),
+(7, 11, 'a', 'a', 'a', 0, 'a', 'a'),
+(8, 22, 'Kandy', 'Dehiwala', 'Parcel', 33322423, 'colombo', 'Beverage'),
+(9, 1, 'Kandy', 'Dehiwala', 'dfasd', 342, 'colombo', 'dfs'),
+(10, 1, 'Kandy', 'Dehiwala', 'dfasd', 342, 'colombo', 'dfs'),
+(11, 1, 'Kandy', 'Dehiwala', 'dfasd', 342, 'colombo', 'dfs');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parcelori`
+--
+
+CREATE TABLE `parcelori` (
+  `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `pickup_address` varchar(45) DEFAULT NULL,
   `delivery_address` varchar(45) DEFAULT NULL,
@@ -126,7 +158,7 @@ CREATE TABLE `parcel` (
   `contact_no` varchar(45) DEFAULT NULL,
   `state_address` varchar(45) DEFAULT NULL,
   `note` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -145,13 +177,44 @@ CREATE TABLE `parcel_reports` (
   `note` varchar(90) NOT NULL,
   `parcel_ID` int(11) NOT NULL,
   `courier_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `parcel_reports`
 --
 
 INSERT INTO `parcel_reports` (`id`, `customer_ID`, `pickup_address`, `delivery_address`, `package_type`, `contact_no`, `state_address`, `note`, `parcel_ID`, `courier_ID`) VALUES
+(1, 1, 'Katunayake', 'Negombo', 'Parcel', 1122541126, 'Colombo', 'Nothing special', 5, 0),
+(3, 1, 'pp', 'dd', 'ty', 34342, 'ffdsfsf', 'ggfcnfgnjfgn', 6, 0),
+(4, 1, 'pp', 'dsfds', 'sdfds', 6756, 'fsfs', 'sfsdg', 7, 0),
+(7, 11, 'a', 'a', 'a', 0, 'a', 'a', 2, 4),
+(8, 22, 'Kandy', 'Dehiwala', 'Parcel', 33322423, 'colombo', 'Beverage', 1, 4),
+(12, 15, 'Minuwangoda', 'Negombo', 'Beverage', 755432642, 'Gampaha', '', 63, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parcel_reportsori`
+--
+
+CREATE TABLE `parcel_reportsori` (
+  `id` int(11) NOT NULL,
+  `customer_ID` int(11) NOT NULL,
+  `pickup_address` varchar(50) NOT NULL,
+  `delivery_address` varchar(60) NOT NULL,
+  `package_type` varchar(20) NOT NULL,
+  `contact_no` int(11) NOT NULL,
+  `state_address` varchar(60) NOT NULL,
+  `note` varchar(90) NOT NULL,
+  `parcel_ID` int(11) NOT NULL,
+  `courier_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `parcel_reportsori`
+--
+
+INSERT INTO `parcel_reportsori` (`id`, `customer_ID`, `pickup_address`, `delivery_address`, `package_type`, `contact_no`, `state_address`, `note`, `parcel_ID`, `courier_ID`) VALUES
 (1, 1, 'Katunayake', 'Negombo', 'Parcel', 1122541126, 'Colombo', 'Nothing special', 5, 0),
 (2, 1, 'Pickup', 'Delivery', 'Beverage', 73532121, 'State', 'Nothing Special', 1, 0),
 (3, 1, 'pp', 'dd', 'ty', 34342, 'ffdsfsf', 'ggfcnfgnjfgn', 6, 0),
@@ -184,28 +247,12 @@ CREATE TABLE `parcel_status` (
 --
 
 INSERT INTO `parcel_status` (`id`, `courier_id`, `customer_id`, `status`, `Vehicle_ID`, `parcel_ID`) VALUES
-(2, 4, 1, 'Delivered', 0, 5),
-(3, 4, 1, 'Pickedup', 0, 1),
-(4, 4, 1, 'Pickedup', 0, 6),
-(5, 4, 1, 'Delivered', 0, 7),
-(6, 4, 1, 'Pickedup', 0, 8),
-(7, 4, 0, 'Pickedup', 0, 0),
-(8, 4, 12, 'Pickedup', 0, 1),
-(9, 4, 11, 'Pickedup', 0, 2),
-(10, 4, 22, 'Pickedup', 0, 1),
-(11, 4, 0, 'Pickedup', 0, 1),
-(12, 4, 0, 'Pickedup', 0, 1),
-(13, 4, 0, 'Pickedup', 0, 1),
-(14, 4, 0, 'Pickedup', 0, 1),
-(15, 4, 1, 'Pickedup', 0, 1),
-(16, 4, 0, 'Pickedup', 0, 1),
-(17, 4, 1, 'Pickedup', 0, 1),
-(18, 4, 0, 'Pickedup', 0, 1),
-(19, 4, 0, 'Pickedup', 0, 1),
-(20, 0, 0, 'Pickedup', 0, 1),
-(21, 0, 0, 'Pickedup', 0, 1),
-(22, 0, 0, 'Pickedup', 0, 1),
-(23, 0, 1, 'Pickedup', 0, 1);
+(2, 4, 1, 'Pickedup', 54, 5),
+(4, 4, 15, 'Pickedup', 54, 63),
+(5, 4, 15, 'Delivered', 54, 7),
+(6, 4, 1, 'Pickedup', 54, 8),
+(7, 4, 0, 'Pickedup', 54, 0),
+(9, 4, 11, 'Pickedup', 54, 2);
 
 -- --------------------------------------------------------
 
@@ -216,15 +263,18 @@ INSERT INTO `parcel_status` (`id`, `courier_id`, `customer_id`, `status`, `Vehic
 CREATE TABLE `receiver` (
   `id` int(11) NOT NULL,
   `username` varchar(60) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `customer_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `receiver`
 --
 
-INSERT INTO `receiver` (`id`, `username`, `password`) VALUES
-(1, 'rec', 'aaaa');
+INSERT INTO `receiver` (`id`, `username`, `password`, `customer_ID`) VALUES
+(1, 'Prasanga_Rec', '827ccb0eea8a706c4c34a16891f84e7b', 15),
+(8, 'rec', '1111', 0),
+(11, 'receiver', '1111', 15);
 
 -- --------------------------------------------------------
 
@@ -274,22 +324,37 @@ ALTER TABLE `parcel`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `parcelori`
+--
+ALTER TABLE `parcelori`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `parcel_reports`
 --
 ALTER TABLE `parcel_reports`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `parcel_ID` (`parcel_ID`);
+
+--
+-- Indexes for table `parcel_reportsori`
+--
+ALTER TABLE `parcel_reportsori`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `parcel_status`
 --
 ALTER TABLE `parcel_status`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `parcel_ID` (`parcel_ID`);
 
 --
 -- Indexes for table `receiver`
 --
 ALTER TABLE `receiver`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `staff`
@@ -311,21 +376,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `courier`
 --
 ALTER TABLE `courier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `parcel`
 --
 ALTER TABLE `parcel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `parcelori`
+--
+ALTER TABLE `parcelori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `parcel_reports`
 --
 ALTER TABLE `parcel_reports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `parcel_reportsori`
+--
+ALTER TABLE `parcel_reportsori`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `parcel_status`
@@ -336,7 +411,7 @@ ALTER TABLE `parcel_status`
 -- AUTO_INCREMENT for table `receiver`
 --
 ALTER TABLE `receiver`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `staff`
 --

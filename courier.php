@@ -40,7 +40,7 @@
                 
                 <span class="credentials_failed"><?php echo $error; ?></span>
 				</form>
-                <form action="courierReg.php" method="post">
+                <form action="courierReg.html" method="post">
                 <input name="submit" type="submit" value="Register">
                 </form>
 		</div>

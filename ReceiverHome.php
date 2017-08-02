@@ -178,7 +178,7 @@ extract($row);
 
 //echo $customer_id;//Getting  the customer_ID	
 }
-////////////////
+
 $sql1 = "SELECT status from parcel_status where customer_id = '$customer_id'";
 if (mysqli_query($db, $sql1)) {
     
@@ -186,12 +186,11 @@ $results = mysqli_query($db, $sql1) or die(mysql_error());
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
 extract($row);
-echo $status;//Getting  parcel status
+//echo $status;//Getting  parcel status
 	}
 }
 
 $sql = "SELECT parcel.ID, parcel.pickup_address, parcel.delivery_address, parcel.package_type, parcel.contact_no, parcel_status.status FROM parcel INNER JOIN parcel_status on parcel.id = parcel_status.parcel_ID WHERE parcel_status.status = 'Pickedup' AND parcel_status.customer_id = '1'";
-////////////////
 
 $result = $db->query($sql);
 
@@ -247,26 +246,7 @@ echo "";
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
              <input type="submit" value="Received">
              </form>    
-              
-             
-        <!--       
-       <div class="map-Border">
-        <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          //center: {lat: 7.8731, lng: 80.7718},
-		  center: {lat: 7.1824795, lng: 79.9043215},
-          //zoom: 8
-		  zoom:15
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPtg5NhcYerzCS0sHvWAff9XqUipqY8LU&callback=initMap"
-    async defer></script>
-       </div>
-    </section>
+ 
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

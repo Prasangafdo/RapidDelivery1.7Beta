@@ -1,4 +1,7 @@
-
+<?php
+include('couriercheck.php'); 
+?>
+<!DOCTYPE html>
 <html>
     <link href="css/style2.css" rel="stylesheet">
     <link href="css/style3.css" rel="stylesheet">
@@ -35,10 +38,9 @@
                 <ul>
                 <div class="userName">
                 
-					<?php
-                    include('courierSession.php');
-                    echo "<h3> $login_session </h3>";
-                    ?>
+<?php
+echo "<h3> $login_user </h3>";
+?>
 
                 </div>
                 </div>
@@ -46,17 +48,16 @@
                 </div>
                 </nav>
 
-                <?php
-require 'connect.php';
+<?php
 $pickup_addr = $_POST['pickupaddress'];
 $state_address = $_POST['stateaddress'];
 
 $sql = "SELECT id, pickup_address, delivery_address, package_type, contact_no, state_address FROM
 parcel where pickup_address like '$pickup_addr' AND state_address like '$state_address'";
 
-if (mysqli_query($con, $sql)) {
+if (mysqli_query($db, $sql)) {
     
-$results = mysqli_query($con, $sql) or die(mysql_error());
+$results = mysqli_query($db, $sql) or die(mysql_error());
 $x=1;
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 if ($x <= 1)

@@ -16,21 +16,7 @@ include("couriercheck.php");
     
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    
-    
+     
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,7 +34,13 @@ include("couriercheck.php");
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
-                
+            
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Rapid Delivery</a>
             </div>
 

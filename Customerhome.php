@@ -16,21 +16,7 @@ include("customercheck.php");
     
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    
-    
+  
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -39,8 +25,6 @@ include("customercheck.php");
 
 </head>
 
-
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 

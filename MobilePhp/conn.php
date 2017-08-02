@@ -1,8 +1,8 @@
 <?php //This will establish the connection with the database.
-$db_name = "epiz_20335740_rapidDelivery";
-$mysql_username = "epiz_20335740";
-$mysql_password = "OOOAnxgQ";
-$server_name = "sql206.epizy.com";
+$db_name = "id1106592_rapiddelivery";
+$mysql_username = "id1106592_prasanga";
+$mysql_password = "Lykan";
+$server_name = "localhost";
 $con = mysqli_connect($server_name, $mysql_username, $mysql_password, $db_name);
 
 if($con){
