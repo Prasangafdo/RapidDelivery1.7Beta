@@ -23,6 +23,7 @@ include("couriercheck.php");
     <!-- Custom CSS -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
     <link href="css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style3.css">
 
 
 </head>
@@ -100,7 +101,7 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
     </section>
 
 
-    <section id="Find-couriers" class="about-section">
+    <section id="Find-couriers" class="findcouriers-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -120,7 +121,7 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
     </section>
 
 
-    <section id="Switch-Vehicle" class="exchange-section">
+    <section id="Switch-Vehicle" class="swvehicle-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -129,7 +130,7 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
                       
                          <form  method="post" action="shiftVehicle.php" >
  						 <input type="text" name="vehicleID" id="vehicleID" placeholder="Vehicle ID">
-                        <input type="submit" Value="Shift Package" id="" class="submitBtn">
+                        <input type="submit" Value="Shift Vehicle" id="" class="submitBtn">
                         </form>
                         </p>
                 </div>
@@ -162,7 +163,6 @@ $results = mysqli_query($db, $sql) or die(mysql_error());
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
 extract($row);
-
 //echo $id;//Getting  the customer_ID	
 }
 

@@ -56,12 +56,6 @@
 
 /******/
 
-  <style>
-      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-      /*still in the works :P*/
-/*variables*/
-/*general style*/
-/*google font*/
 @import "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700)";
 body {
   font: 13px/20px "Open Sans", Tahoma, Verdana, sans-serif;
@@ -91,12 +85,11 @@ body {
   left: 0px;
   top: 0px;
   position: absolute;
-  height: 44px;
+  height: 440px;
   width: 44px;
   color: #f7f3eb;
   background: #676056;
   text-align: center;
-  line-height: 44px;
   transition: all 0.3s ease-out;
   pointer-events: none;
 }
@@ -105,8 +98,8 @@ body {
 .login {
   position: relative;
   margin: 100px auto;
-  width: 370px;
-  height: 315px;
+  width: 250px;
+  height: 150px;
   background: white;
   border-radius: 3px;
 }
@@ -140,7 +133,7 @@ body {
   margin-top: 30px;
 }
 .login p .remember {
-  float: left;
+  float: center;
 }
 .login p .remember label {
   color: #a7a599;
@@ -179,7 +172,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   padding: 10px 15px 10px 55px;
-  position: relative;
+
   width: 200px;
   height: 24px;
   color: #676056;
@@ -331,4 +324,3 @@ body {
   color: #f2672e;
 }
 
-    </style>

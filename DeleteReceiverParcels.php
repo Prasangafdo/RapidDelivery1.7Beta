@@ -7,7 +7,7 @@ $parcel_ID = $_POST['parcel_ID'];
 
 	if(mysqli_query($db, $update)){
 		echo "<script language=\"javascript\">";
-	echo 'if(confirm("Parcel marked as delivered")) document.location = \'Customerhome.php\'';//Redirecting to cutomer homepage
+	echo 'if(confirm("Parcel marked as delivered")) document.location = \'Receiverhome.php\'';//Redirecting to cutomer homepage
 	echo '</script>';
 	}
 	else {

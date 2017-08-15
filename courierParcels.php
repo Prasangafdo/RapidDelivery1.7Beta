@@ -48,55 +48,52 @@ echo "<h3> $login_user </h3>";
                 </div>
                 </nav>
 
+<table class="container"><!--Initializing table-->
+	<thead>
+		<tr>
+       		<th><h1>ID</h1></th>
+			<th><h1>Pickup Address</h1></th>
+			<th><h1>Delivery Address</h1></th>
+			<th><h1>Package Type</h1></th>
+			<th><h1>Contact Number</h1></th>
+            <th><h1>State Address</h1></th>
+		</tr>
+	</thead>
+	<tbody>
 <?php
 $pickup_addr = $_POST['pickupaddress'];
 $state_address = $_POST['stateaddress'];
 
 $sql = "SELECT id, pickup_address, delivery_address, package_type, contact_no, state_address FROM
 parcel where pickup_address like '$pickup_addr' AND state_address like '$state_address'";
+/////////
+$result = $db->query($sql);
 
-if (mysqli_query($db, $sql)) {
-    
-$results = mysqli_query($db, $sql) or die(mysql_error());
-$x=1;
-while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-if ($x <= 1)
-{
-
-extract($row);
-echo "<table id=\"keywords\" cellspacing=\"0\" cellpadding=\"0\">";
-echo "<thead>
-<br/><br/>
-<br/>
-<br/>
-<br/><br/>
-<br/>
-
-<tr>
-<th><span>ID</span></th>
-        <th><span>pickup_address</span></th>
-        <th><span>delivery_address</span></th>
-        <th><span>package_type</span></th>
-        <th><span>contact_no</span></th>
-		<th><span>state_address</span></th>
-      </tr>
-    </thead>
-	 <tbody>
-      <tr>
-        <td class=\"lalign\">".$id ."</td>
-	 
-        <td>".$pickup_address."</td>
-        <td>".$delivery_address."</td>
-        <td>".$package_type."</td>
-        <td>".$contact_no."</td>
-		<td>".$state_address."</td>
-      </tr>
-	   </tr>
-    </tbody>
-  </table>";
-		}
-	}
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+		extract($row);	
+	  echo	"
+		<tr>
+			<td> $id  </td>
+			<td>$pickup_address</td>
+			<td>$delivery_address</td>
+			<td>$package_type</td>
+			<td>$contact_no</td>
+			<td>$state_address</td>
+		</tr>
+		";
+    }
+} else {
+    echo "0 results";
 }
+
+echo "";
+$db->close();
+
+		
+	
+
 ?>
 
 <div class="login">
@@ -112,7 +109,7 @@ echo "<thead>
 
 
     </form>
-  </div> <!--/ Login-->
+  </div> 
 </body>
 </html>
 

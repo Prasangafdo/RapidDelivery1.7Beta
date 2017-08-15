@@ -1,5 +1,5 @@
 <?php
-include("customercheck.php");  
+include("receivercheck.php");  
 ?>
 
 <!DOCTYPE html>
@@ -165,7 +165,7 @@ $x=0;
     <br/>
     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/style4.css">
-     <form action="Customerhome.php" style=" display: inline-block">
+     <form action="Receiverhome.php" style=" display: inline-block">
     <button data-hover="Go to page"><div>Go back to Home</div></button>
     </form>
    

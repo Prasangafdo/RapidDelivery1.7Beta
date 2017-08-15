@@ -277,7 +277,7 @@ if ($result->num_rows > 0) {
 		";
     }
 } else {
-    echo "0 results";
+   // echo "0 results";//Uncomment this only for debugging
 }
 
 echo "";
@@ -286,24 +286,6 @@ echo "";
 
 ?>
              
-        <!--       
-       <div class="map-Border">
-        <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          //center: {lat: 7.8731, lng: 80.7718},
-		  center: {lat: 7.1824795, lng: 79.9043215},
-          //zoom: 8
-		  zoom:15
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPtg5NhcYerzCS0sHvWAff9XqUipqY8LU&callback=initMap"
-    async defer></script>
-       </div>
-    </section>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

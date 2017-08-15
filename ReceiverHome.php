@@ -235,14 +235,14 @@ echo "";
                      </p>
                      </div>
              </div>
-             <form action="CustomerParcels.php" method="post">
+             <form action="Receiverparcels.php" method="post">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
-             <input type="submit">
+             <input type="submit" value="Track">
              </form>
              <p style="text-align:center">
               If the parcel is delivered and still shown on the table, please mark it as deliverd.
               </p>
-             <form action="DeleteParcels.php" method="post">
+             <form action="DeleteReceiverParcels.php" method="post">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
              <input type="submit" value="Received">
              </form>    

@@ -1,15 +1,13 @@
 <?php
-require 'connect.php';
+include('couriercheck.php');
 $Vehicle_ID = $_POST['vehicleID'];
 
-include('courierSession.php');
-
 $sql1 = "SELECT id FROM
-courier where username = '$login_session'";
+courier where username = '$login_user'";
 
-if (mysqli_query($con, $sql1)) {
+if (mysqli_query($db, $sql1)) {
     
-$results = mysqli_query($con, $sql1) or die(mysql_error());
+$results = mysqli_query($db, $sql1) or die(mysql_error());
 $x=1;
 
 while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
@@ -18,11 +16,16 @@ extract($row);
 	}
 }
 
-$sql3 = "UPDATE parcel_status SET Vehicle_ID = '$Vehicle_ID'
-where courier_id = '$id'";
+$sql3 = "UPDATE courier SET vehicle_ID = '$Vehicle_ID'
+where id = '$id'";
 
-if (mysqli_query($con, $sql3)) {
-   echo "Package Transfered";
+if (mysqli_query($db, $sql3)) {
+   echo "<script language=\"javascript\">";
+	echo 'if(confirm("You have successfully switched the vehicle")) document.location = \'Courierhome.php\'';//Redirecting to cutomer homepage
+	echo '</script>';
    }
+  else{
+  echo "Error: " . $sql3 . "<br>" . mysqli_error($db);
+  }
    
 ?>
