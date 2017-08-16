@@ -235,16 +235,22 @@ echo "";
                      </p>
                      </div>
              </div>
+             
              <form action="Receiverparcels.php" method="post">
+             <ul class="input-list style-2 clearfix">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
-             <input type="submit" value="Track">
+              <button data-hover="Click Here"><div>Track</div></button>
+             </ul>
              </form>
              <p style="text-align:center">
               If the parcel is delivered and still shown on the table, please mark it as deliverd.
               </p>
+              
              <form action="DeleteReceiverParcels.php" method="post">
+             <ul class="input-list style-2 clearfix">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
-             <input type="submit" value="Received">
+            <button data-hover="Click Here"><div>Mark as received</div></button>
+             </ul>
              </form>    
  
 

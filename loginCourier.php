@@ -22,7 +22,7 @@ include("connect.php"); //Establishing connection with our database
 			$password = md5($password);
 			
 			//Check username and password from database
-			$sql="SELECT id FROM courier WHERE username='$username' and password='$password'";
+			$sql="SELECT id FROM courier WHERE username='$username' and password='$password' and Approved ='Yes'";
 			$result=mysqli_query($db,$sql);
 			$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 			

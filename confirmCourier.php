@@ -22,6 +22,7 @@ include("admincheck.php");
 
     <!-- Custom CSS -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
+   
 
 </head>
 
@@ -95,8 +96,8 @@ echo "<h3> $login_user </h3>";
         
      <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/style4.css">
-     <form action="confirmCourier.php" style=" display: inline-block">
-    <button data-hover="Go to page"><div>Approve courier registration</div></button>
+     <form action="adminHome.php" style=" display: inline-block">
+    <button data-hover="Click here"><div>Go Back to home</div></button>
     </form>
     </section>
 
@@ -104,7 +105,7 @@ echo "<h3> $login_user </h3>";
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>All Couriers</h1>
+                    <h1>Pending Couriers</h1>
                     
                       <table class="container">
 	<thead>
@@ -119,7 +120,7 @@ echo "<h3> $login_user </h3>";
 	<tbody>
 <?php
 
-$sql = "SELECT * from courier where Approved = 'Yes'";
+$sql = "SELECT * from courier where Approved = 'No'";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -147,169 +148,26 @@ echo "";
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="Receivers" class="services-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>All Customers (Senders)</h1>
-                     
-                      <table class="container">
-	<thead>
-		<tr>
-			<th><h1>Customer ID</h1></th>
-			<th><h1>Username</h1></th>
-			<th><h1>Email Address</h1></th>
-            <th><h1>Address</h1></th>
-			<th><h1>Telephone</h1></th>
-		</tr>
-	</thead>
-	<tbody>
-<?php
-
-$sql = "SELECT * from customer";
-$result = $db->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-		extract($row);	//Password is not extracting due to security issues.
-	  echo	"
-		<tr>
-			<td>$id</td>
-			<td>$username</td>
-			<td>$email</td>
-			<td>$address</td>
-			<td>$tel</td>
-		</tr>
-		";
-    }
-} else {
-    echo "0 results";
-}
-
-echo "";
-?>
-</tbody>
-</table>
         
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="Parcels" class="contact-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>All Receivers</h1>
-                      <table class="container">
-	<thead>
-		<tr>
-			<th><h1>Receiver ID</h1></th>
-			<th><h1>Username</h1></th>
-		</tr>
-	</thead>
-	<tbody>
-<?php
-
-$sql = "SELECT * from receiver";
-$result = $db->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-		extract($row);	//Password is not extracting due to security issues.
-	  echo	"
-		<tr>
-			<td>$id</td>
-			<td>$username</td>
-		</tr>
-		";
-    }
-} else {
-    echo "0 results";
-}
-
-echo "";
-?>
-</tbody>
-</table>
+        <!--Input form-->
+        <section>
+        <br>
+        <br>
+        <ul class="input-list style-2 clearfix">
+          <li>
+            <form action="confirmCourier-Backend.php" style=" display: inline-block" method="post">
+             <input type="text" placeholder="Courier ID" name="sentCourierID">
+                <button data-hover="Confirm"><div>Approve courier</div></button>
+                </form>
+          </li>
+                
+        </ul>
         
-                </div>
-            </div>
-        </div>
+        
+      </section>
+        
     </section>
 
-    <section id="track" class="track-section">
-        <div class="container">
-            <div class="row">
-                <div class="">
-                    <h1>All Parcels</h1>
-                      <table class="container">
-	<thead>
-		<tr>
-			<th><h1>Parcel ID</h1></th>
-			<th><h1>Customer ID</h1></th>
-			<th><h1>Pickup Address</h1></th>
-            <th><h1>Delivery Address</h1></th>
-			<th><h1>Package Type</h1></th>
-            <th><h1>Contact number</h1></th> <!-- Need to add state address for pickup location and delivery location.-->
-		</tr>
-	</thead>
-	<tbody>
-<?php
-
-$sql = "SELECT * from parcel";
-$result = $db->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-		extract($row);	//Password is not extracting due to security issues.
-	  echo	"
-		<tr>
-			<td>$id</td>
-			<td>$customer_ID</td>
-			<td>$pickup_address</td>
-			<td>$delivery_address</td>
-			<td>$package_type</td>
-			<td>$contact_no</td>
-		</tr>
-		";
-    }
-} else {
-    echo "0 results";
-}
-
-echo "";
-//$db->close();
-?>
-</tbody>
-</table>
-</div>
-</div>
-
-             
-        <!--       
-       <div class="map-Border">
-        <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          //center: {lat: 7.8731, lng: 80.7718},
-		  center: {lat: 7.1824795, lng: 79.9043215},
-          //zoom: 8
-		  zoom:15
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPtg5NhcYerzCS0sHvWAff9XqUipqY8LU&callback=initMap"
-    async defer></script>
-       </div>
-    </section>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

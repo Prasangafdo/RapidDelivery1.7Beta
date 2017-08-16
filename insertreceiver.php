@@ -7,6 +7,7 @@ include ("customercheck.php");
 
 $uname = $_POST['uname'];
 $pss = $_POST['pss'];
+$pss = md5($pss);
 
 $sql = "SELECT `id` FROM `customer` WHERE `username` = '$login_user'";
 

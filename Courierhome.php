@@ -86,10 +86,13 @@ echo "<h3> $login_user </h3>";
             <div class="row">
                 <div class="welcomePane">
                     <h1>Welcome to Rapid Delivery</h1>
-                 <!--   <div class="welcomePane-img">
-                    	
-                </div>-->
                 <img class="img-responsive" src="images/courier-services-2.jpg">
+                
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/style4.css">
+     <form action="androidapp/rapiddelivery.apk" style=" display: inline-block">
+    <button data-hover="Click Here"><div>Download Android app</div></button>
+    </form>
                 <h1>About Rapid Deliery </h1>
                    	<p align="justify"> 
                     Rapid Delivery is a 24/7 courier service, located in Colombo, Sri Lanka. Our company was founded in mid-2017 by a final year software engineering student of the University of the west of England with the aim of providing a better courier service that is focused on delivery transparency with the support of GPS. 
@@ -108,11 +111,14 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
                     <h1>Find Parcels</h1>
                     	<p align="justify"> 
                       
-                         <form  method="post" action="courierparcels.php" >
+               <ul class="input-list style-2 clearfix">
+                         <form  method="post" action="courierparcels.php" style=" display: inline-block">
  						 <input type="text" name="pickupaddress" id="pickupaddress" placeholder="Pickup state">
                          <input type="text" name="stateaddress" id="stateaddress" placeholder="Delivery state">
-                        <input type="submit" Value="Search" id="" class="submitBtn">
+                         <button data-hover="Click here"><div>Search</div></button>
                         </form>
+                        
+                        </ul>
                         </p>
                      
                 </div>
@@ -128,10 +134,14 @@ Rapid Delivery us, utilize Intelligent Dispatch, which is an artificial intellig
                     <h1>Switch Vehicle</h1>
                     <p align="justify"> 
                       
+                       <ul class="input-list style-2 clearfix">
+          				
                          <form  method="post" action="shiftVehicle.php" >
  						 <input type="text" name="vehicleID" id="vehicleID" placeholder="Vehicle ID">
-                        <input type="submit" Value="Shift Vehicle" id="" class="submitBtn">
+                        <button data-hover="Click here"><div>Shift Vehicle</div></button>
                         </form>
+                        
+                        </ul>
                         </p>
                 </div>
             </div>

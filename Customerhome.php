@@ -150,7 +150,6 @@ Additionally, other than giving features to the employees, Rapid Delivery has be
 		<tr>
 			<th><h1>ID</h1></th>
 			<th><h1>Username</h1></th>
-			<th><h1>Password</h1></th>
 		</tr>
 	</thead>
   <tbody>
@@ -179,7 +178,7 @@ if ($result->num_rows > 0) {
 		<tr>
 			<td> $id</td>
 			<td>$username</td>
-			<td>$password</td>
+			
 		</tr>
 		";
     }
@@ -207,14 +206,27 @@ echo "";
                     <h1>Tracking</h1>
                      </div>
              </div>
-             <form action="CustomerParcels.php" method="post">
+             <p style="text-align:center">
+                     Please enter the Parcel ID which you want to track. You can get the parcel ID from the above table.
+                     </p>
+             <ul class="input-list style-2 clearfix">
+             <form action="CustomerParcels.php" method="post" style=" display: inline-block">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
-             <input type="submit" value="Track">
+             <button data-hover="Click Here"><div>Track</div></button>
+             </ul> 
              </form>
-             <form action="DeleteParcels.php" method="post">
+             
+             <p style="text-align:center">
+              If the parcel is delivered and still shown on the table, please mark it as deliverd.
+              </p>
+             
+             <ul class="input-list style-2 clearfix">
+             <form action="DeleteParcels.php" method="post" style=" display: inline-block">
              <input type="text" name="parcel_ID" placeholder="Parcel ID">
-             <input type="submit" value="Received">
-             </form>  
+             <button data-hover="Click Here"><div>Mark as received</div></button>
+             </ul> 
+             </form> 
+             
              </div>
              </section>  
              <br/> 
